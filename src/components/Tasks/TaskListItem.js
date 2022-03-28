@@ -104,7 +104,6 @@ function TaskListItem(props) {
       <p>
         <i className={getIconClassName(props.task)} />
         <span className={getTextClassName(props.task)}>{props.task.title}</span>
-        <b>{props.task.creationDate}</b>
       </p>
       {keypad}
     </div>

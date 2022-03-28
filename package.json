@@ -20,6 +20,7 @@
   },
   "scripts": {
     "dev": "set PORT=3303 && react-scripts start",
+    "server": "npx json-server --watch data/db.json --port 9001",
     "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
