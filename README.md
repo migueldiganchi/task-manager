@@ -15,4 +15,4 @@ You will also see any lint errors in the console.
 ### `npm run server`
 
 In a new terminal you must start the virtual API server.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The API service will run at [http://localhost:9001]
