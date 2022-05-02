@@ -5,7 +5,7 @@ import Validation from "../Validation";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 
-class TaskForm extends Component {
+class SynapticDotForm extends Component {
   state = {
     id: null,
     title: "",
@@ -23,25 +23,25 @@ class TaskForm extends Component {
 
   componentDidMount() {
     this.setState({
-      id: this.props.task.id,
-      title: this.props.task.title,
-      dueDate: moment(this.props.task.dueDate).toDate(),
-      creationDate: moment(this.props.task.creationDate).toDate(),
-      wasDone: this.props.task.wasDone,
+      id: this.props.synapticDot.id,
+      title: this.props.synapticDot.title,
+      dueDate: moment(this.props.synapticDot.dueDate).toDate(),
+      creationDate: moment(this.props.synapticDot.creationDate).toDate(),
+      wasDone: this.props.synapticDot.wasDone,
       formClassName: "field",
       filter:
-        this.props.task && this.props.task.filter
-          ? this.props.task.filter
+        this.props.synapticDot && this.props.synapticDot.filter
+          ? this.props.synapticDot.filter
           : this.state.filterTypes.FRIENDS,
     });
   }
 
-  onSubmitTask = (e) => {
+  onSubmitSynapticDot = (e) => {
     e.preventDefault();
-    let task =
-      this.props && this.props.task
+    let synapticDot =
+      this.props && this.props.synapticDot
         ? {
-            id: this.props.task.id,
+            id: this.props.synapticDot.id,
             title: this.state.title,
             dueDate: moment(this.state.dueDate).toDate(),
             creationDate: moment(this.state.creationDate).toDate(),
@@ -54,32 +54,32 @@ class TaskForm extends Component {
             wasDone: false,
           };
 
-    if (!this.isValid(task)) {
+    if (!this.isValid(synapticDot)) {
       return;
     }
 
-    this.saveTask(task);
+    this.saveSynapticDot(synapticDot);
 
     if (this.props.onSave) {
-      this.props.onSave(task);
+      this.props.onSave(synapticDot);
     }
   };
 
-  saveTask = (task) => {
-    let isNewTask = !task.id;
-    let method = isNewTask ? axios.post : axios.put;
-    let url = isNewTask ? "/tasks" : `/tasks/${task.id}`;
-    let loadingMessage = isNewTask ? "Creating task..." : "Saving task...";
+  saveSynapticDot = (synapticDot) => {
+    let isNewSynapticDot = !synapticDot.id;
+    let method = isNewSynapticDot ? axios.post : axios.put;
+    let url = isNewSynapticDot ? "/synapticDots" : `/synapticDots/${synapticDot.id}`;
+    let loadingMessage = isNewSynapticDot ? "Creating synapticDot..." : "Saving synapticDot...";
 
-    // go server to save task
+    // go server to save synapticDot
     this.props.onWait(loadingMessage);
-    method(url, task)
+    method(url, synapticDot)
       .then(() => {
         this.props.onStopWait();
         setTimeout(() => {
-          let message = "Successfuly " + (isNewTask ? "created" : "updated");
+          let message = "Successfuly " + (isNewSynapticDot ? "created" : "updated");
           if (this.props.onSave) {
-            this.props.onSave(task);
+            this.props.onSave(synapticDot);
             setTimeout(() => {
               this.props.onNotify(message, "info");
             }, 333);
@@ -97,16 +97,16 @@ class TaskForm extends Component {
     });
   };
 
-  isValid = (task) => {
+  isValid = (synapticDot) => {
     let error = false;
     let titleErrors = [];
 
-    if (task.title === "") {
+    if (synapticDot.title === "") {
       titleErrors.push({
         message: "Body is required",
       });
       this.setState({ formClassName: "field error" });
-    } else if (task.title.length < 6) {
+    } else if (synapticDot.title.length < 6) {
       titleErrors.push({
         message: "Too short (min: 6)",
       });
@@ -135,7 +135,7 @@ class TaskForm extends Component {
   onEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
-      this.onSubmitTask(e);
+      this.onSubmitSynapticDot(e);
     }
   };
 
@@ -155,29 +155,29 @@ class TaskForm extends Component {
     return (
       <div className="form-container">
         <form
-          action="/tasks"
+          action="/synapticDots"
           method="post"
           className="form"
-          onSubmit={this.onSubmitTask}
+          onSubmit={this.onSubmitSynapticDot}
         >
           <div className="form-body">
-            {/* Description of the task */}
+            {/* Description of the synapticDot */}
             <div className={this.state.formClassName}>
               <textarea
                 rows="2"
                 autoFocus
                 onKeyDown={this.onEnterPress}
                 onChange={this.typingTitle}
-                placeholder="Task Description"
+                placeholder="SynapticDot Description"
                 value={this.state.title}
               />
             </div>
             <Validation validationList={this.state.titleValidationErrors} />
 
-            {/* Datepicker of the task */}
+            {/* Datepicker of the synapticDot */}
             <div className="text-center">
               <label className="mb-3">
-                <small>When is this task due?</small>
+                <small>When is this synapticDot due?</small>
               </label>
               <div className="field">
                 <DatePicker
@@ -202,7 +202,7 @@ class TaskForm extends Component {
                   onChange={this.switchDoneState}
                 />
                 <label className="custom-control-label" htmlFor="doneSwitcher">
-                  <small>Was this task completed?</small>
+                  <small>Was this synapticDot completed?</small>
                   <small>
                     <b className="ml-2">
                       {this.state.wasDone ? "Yes!" : "Not yet"}
@@ -226,7 +226,7 @@ class TaskForm extends Component {
               </button>
               <button type="submit" className="do do-primary">
                 <i className="fas fas fa-check" />
-                {this.props.task.id ? "Update" : "Post"}
+                {this.props.synapticDot.id ? "Update" : "Post"}
               </button>
             </div>
             <div className="keypad keypad-inline-block responsive responsive-mobile">
@@ -248,4 +248,4 @@ class TaskForm extends Component {
   }
 }
 
-export default TaskForm;
+export default SynapticDotForm;

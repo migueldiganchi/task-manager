@@ -154,7 +154,7 @@ class Searcher extends React.Component {
   };
 
   render() {
-    let placeholderText = !this.state.isActive ? "Search tasks" : "";
+    let placeholderText = !this.state.isActive ? "Search synapticDots" : "";
     let searcherClassName = this.state.isActive
       ? "App-searcher active"
       : "App-searcher";

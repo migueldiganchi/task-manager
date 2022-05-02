@@ -17,7 +17,7 @@ class Auth extends React.Component {
     this.props.onWait("Authenticating...");
     setTimeout(() => {
       this.props.onStopWait();
-      this.props.onNotify("Welcome to Task Manager!");
+      this.props.onNotify("Welcome to SynapticDot Manager!");
     }, 3000);
   };
 

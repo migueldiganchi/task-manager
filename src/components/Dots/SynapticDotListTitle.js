@@ -1,6 +1,6 @@
 import React from "react";
 
-function TaskListTitle(props) {
+function SynapticDotListTitle(props) {
   return (
     <div className="keypad board-panel-keypad text-center mt-2 mb-4">
       <div className={props.featured ? "text text-featured" : "text"}>
@@ -21,10 +21,10 @@ function TaskListTitle(props) {
           <a
             disabled={props.disabled}
             className={"do do-primary no-margin"}
-            onClick={props.onCreateTask}
+            onClick={props.onCreateSynapticDot}
           >
             <i className="fas fa-plus" />
-            New task
+            New synapticDot
           </a>
         </div>
       ) : null}
@@ -32,4 +32,4 @@ function TaskListTitle(props) {
   );
 }
 
-export default TaskListTitle;
+export default SynapticDotListTitle;

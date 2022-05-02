@@ -1,37 +1,37 @@
 import React from "react";
 import moment from "moment";
 
-function TaskListItem(props) {
+function SynapticDotListItem(props) {
   const startRemovingHandler = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    props.onStartRemoving(props.task);
+    props.onStartRemoving(props.synapticDot);
   };
 
   const confirmRemoving = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    props.onConfirmRemoving(props.task);
+    props.onConfirmRemoving(props.synapticDot);
   };
 
   const cancelRemoving = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    props.onCancelRemoving(props.task);
+    props.onCancelRemoving(props.synapticDot);
   };
 
   const startEdition = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    console.log("[props.task]", props.task);
-    props.onEdit(props.task);
+    console.log("[props.synapticDot]", props.synapticDot);
+    props.onEdit(props.synapticDot);
   };
 
-  const getIconClassName = (task) => {
+  const getIconClassName = (synapticDot) => {
     const today = new Date();
-    const dueDate = new Date(task.dueDate);
+    const dueDate = new Date(synapticDot.dueDate);
 
-    if (task.wasDone) {
+    if (synapticDot.wasDone) {
       return "fas fa-check text-success mr-3";
     } else if (today > +dueDate) {
       return "fas fa-calendar-times text-danger mr-3";
@@ -40,8 +40,8 @@ function TaskListItem(props) {
     }
   };
 
-  const getTextClassName = (task) => {
-    return task.wasDone ? "done" : "";
+  const getTextClassName = (synapticDot) => {
+    return synapticDot.wasDone ? "done" : "";
   };
 
   let listItemClassName = "list-item";
@@ -102,12 +102,12 @@ function TaskListItem(props) {
     <div className={listItemClassName}>
       {confirmation}
       <p>
-        <i className={getIconClassName(props.task)} />
-        <span className={getTextClassName(props.task)}>{props.task.title}</span>
+        <i className={getIconClassName(props.synapticDot)} />
+        <span className={getTextClassName(props.synapticDot)}>{props.synapticDot.title}</span>
       </p>
       {keypad}
     </div>
   );
 }
 
-export default TaskListItem;
+export default SynapticDotListItem;

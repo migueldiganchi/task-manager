@@ -5,7 +5,7 @@ function Presentation() {
   return (
     <div className="App-presentation pt-4">
       <div className="text-center logo-holder">
-        <i className="fas fa-tasks" />
+        <i className="fas fa-synapticDots" />
       </div>
       {true ? null : (
         <NavLink to="/auth" className="do do-primary">

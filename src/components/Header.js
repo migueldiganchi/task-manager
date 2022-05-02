@@ -89,8 +89,8 @@ class Header extends React.Component {
               (isHomedisabled ? "disabled" : "")
             }
           >
-            <i className="fas fa-tasks" />
-            My tasks
+            <i className="fas fa-synapticDots" />
+            My synapticDots
           </NavLink>
           <NavLink
             to="/"

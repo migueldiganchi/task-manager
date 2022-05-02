@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Board from "./components/Board";
 import Notifier from "./components/Notifier";
 import BoardPanel from "./components/BoardPanel";
-import TaskManager from "./components/Tasks/TaskManager";
+import SynapticDotManager from "./components/Dots/SynapticDotManager";
 
 class App extends React.Component {
   state = {
@@ -61,7 +61,7 @@ class App extends React.Component {
 
   wall = (props) => {
     return (
-      <TaskManager
+      <SynapticDotManager
         waiting={this.state.waiting}
         onNotify={this.notify}
         onWait={this.wait}
@@ -115,7 +115,7 @@ class App extends React.Component {
         {glassApp}
         {loadingApp}
 
-        <Header title="Task Manager" onLogout={this.closeApp} {...this.props} />
+        <Header title="SynapticDot Manager" onLogout={this.closeApp} {...this.props} />
 
         <Board>
           <BoardPanel>

@@ -1,13 +1,13 @@
 @import "./_mixins";
 
-.App-task {
+.App-synapticDot {
   padding: 0 !important;
 
   .info-block {
     padding-bottom: 15px;
     margin-bottom: 15px;
   }
-  .task-author {
+  .synapticDot-author {
     color: #141e30;
     * {
       color: #141e30;
@@ -22,7 +22,7 @@
   }
 }
 
-.task-list {
+.synapticDot-list {
   margin-bottom: 30px;
   .list-item {
     // @include transition(color, 0.3s, ease);
